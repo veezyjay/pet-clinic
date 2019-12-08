@@ -2,9 +2,11 @@ package com.veezy.petclinic.services.map;
 
 import com.veezy.petclinic.model.Owner;
 import com.veezy.petclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override
