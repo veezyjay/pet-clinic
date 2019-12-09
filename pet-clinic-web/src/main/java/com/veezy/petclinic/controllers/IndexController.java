@@ -10,4 +10,9 @@ public class IndexController {
     public String showIndex() {
         return "index";
     }
+
+    @RequestMapping({"/oups", "/vets.html"})
+    public String oupsHandler() {
+        return "notimplemented";
+    }
 }
