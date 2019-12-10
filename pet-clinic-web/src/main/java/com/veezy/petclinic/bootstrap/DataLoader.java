@@ -1,10 +1,7 @@
 package com.veezy.petclinic.bootstrap;
 
 import com.veezy.petclinic.model.*;
-import com.veezy.petclinic.services.OwnerService;
-import com.veezy.petclinic.services.PetTypeService;
-import com.veezy.petclinic.services.SpecialtyService;
-import com.veezy.petclinic.services.VetService;
+import com.veezy.petclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -16,12 +13,14 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -76,15 +75,23 @@ public class DataLoader implements CommandLineRunner {
         owner2.setCity("Uyo");
         owner2.setTelephone("9234543542");
 
-        ownerService.save(owner2);
-        System.out.println("Loaded owners...");
-
         Pet fionasCat = new Pet();
         fionasCat.setName("Just Cat");
         fionasCat.setOwner(owner2);
         fionasCat.setBirthDate(LocalDate.now());
         fionasCat.setPetType(savedCatPetType);
         owner2.getPets().add(fionasCat);
+
+        ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(fionasCat);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy Kitty");
+
+        visitService.save(catVisit);
+
+        System.out.println("Loaded owners...");
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Papi");

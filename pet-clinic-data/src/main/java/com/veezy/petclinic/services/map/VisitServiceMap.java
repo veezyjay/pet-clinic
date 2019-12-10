@@ -2,7 +2,9 @@ package com.veezy.petclinic.services.map;
 
 import com.veezy.petclinic.model.Visit;
 import com.veezy.petclinic.services.VisitService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class VisitServiceMap extends AbstractMapService<Visit, Long> implements VisitService {
     @Override
     public Visit save(Visit visit) {
