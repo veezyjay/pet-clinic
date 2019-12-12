@@ -1,2 +1,3 @@
+[![CircleCI](https://circleci.com/gh/veezyjay/pet-clinic.svg?style=svg)](https://circleci.com/gh/veezyjay/pet-clinic)
 # pet-clinic
-Spring Pet Clinic
+Pet Clinic Project with Spring Boot
